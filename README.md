@@ -2,7 +2,7 @@
 
 This repository contains the code and notebooks for a classification project focused on **multi-label classification of stuttering events**. My pipeline leverages a pretrained speech foundation model (`Wav2Vec2`) and advanced training strategies to achieve performance competitive with, and in key areas superior to, published research benchmarks on the **SEP-28k dataset**.
 
-My best model, a **Conformer-based classifier**, achieves a **weighted average F1-score of ~0.60**, significantly surpassing the previous acoustic-only benchmark of ~0.55 from [Bayerl et al. (2023)](https://arxiv.org/pdf/2305.19255) all while doing this with a much simpler architectures .
+My best model, a **Conformer-based classifier**, achieves a **weighted average F1-score of ~0.64**, significantly surpassing the previous acoustic-only benchmark of ~0.55 from [Bayerl et al. (2023)](https://arxiv.org/pdf/2305.19255) all while doing this with a much simpler architecture.
 Moreover, the model performs significantly well on the minority classes while not compromising other class performances, something that was not produced by any paper in this space.
 One of the key factors for this improvement was due to Intelligent Data Augmentation Pipeline and trying out various combinations of different models and hyperparameters.
 
@@ -80,29 +80,29 @@ Final Classification Report (Conformer, 5 Classes)
 
 | | precision | recall | f1-score | support |
 |---|---|---|---|---|
-| Prolongation | 0.66 | 0.50 | 0.57 | 2608 |
-| Block | 0.61 | 0.51 | 0.55 | 3474 |
-| SoundRep | 0.55 | 0.57 | 0.56 | 1877 |
-| WordRep | 0.53 | 0.50 | 0.51 | 1735 |
-| Interjection | 0.89 | 0.61 | 0.72 | 3333 |
-| ***micro avg*** | ***0.66*** | ***0.54*** | ***0.59*** | ***13027*** |
-| ***macro avg*** | ***0.65*** | ***0.54*** | ***0.58*** | ***13027*** |
-| ***weighted avg*** | ***0.67*** | ***0.54*** | ***0.60*** | ***13027*** |
-| ***samples avg*** | ***0.63*** | ***0.56*** | ***0.56*** | ***13027*** |
+| Prolongation | 0.57 | 0.62 | 0.59 | 1335 |
+| Block | 0.57 | 0.80 | 0.67 | 1982 |
+| SoundRep | 0.52 | 0.54 | 0.53 | 886 |
+| WordRep | 0.52 | 0.48 | 0.50 | 917 |
+| Interjection | 0.82 | 0.73 | 0.77 | 1833 |
+| ***micro avg*** | ***0.61*** | ***0.67*** | ***0.64*** | ***6953*** |
+| ***macro avg*** | ***0.60*** | ***0.63*** | ***0.61*** | ***6953*** |
+| ***weighted avg*** | ***0.62*** | ***0.67*** | ***0.64*** | ***6953*** |
+| ***samples avg*** | ***0.62*** | ***0.70*** | ***0.62*** | ***6953*** |
 ---
 
-*(Refer: ./Notebooks/wav2vec/Custom Balancing 2/best-run-custbal2-improvcnfmr.ipynb)* 
+*(Refer: ./Notebooks/wav2vec/Custom Balancing 2.1/brun-2-1bal-stfold-custl.ipynb)* 
 
 ****NOTE:*** Some of the other architectures(Transformer, CNN, etc) showed better recall with minority classes classes exceeding 60% but gave ultimately worse weighted f1 score*
 
 | Disfluency Type   | Bayerl et al. '23 F1 | Our Best F1 (Conformer) |
 | :---------------- | :------------------: | :-----------------------: |
-| Block             | 0.16                 | 0.55                     |
-| Interjection      | 0.77                 | 0.72                      |
-| Prolongation      | 0.51                 | 0.57                      |
-| Sound Repetition  | 0.50                 | 0.56                      |
-| Word Repetition   | 0.62                 | 0.51                      |
-| **Weighted Avg F1-Score** | **~0.55** | **0.60** |
+| Block             | 0.16                 | 0.67                     |
+| Interjection      | 0.77                 | 0.77                      |
+| Prolongation      | 0.51                 | 0.59                      |
+| Sound Repetition  | 0.50                 | 0.53                      |
+| Word Repetition   | 0.62                 | 0.50                      |
+| **Weighted Avg F1-Score** | **~0.55** | **0.64** |
 
 *It is also important to note that Bayerl et al's poor performance on the majority class gave them inherent advantage to classify other classes as their model simply did not learn the most common stutter class(Block). While my model proves to be a relatively much better overall well balanced classifier.*
 ## 6. Dependencies
